@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="sani_usermanagement" Class="LinqToSQLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=Delickate\SQLEXPRESS;Initial Catalog=sani_usermanagement;Integrated Security=True" SettingsObjectName="LINQLearning.Properties.Settings" SettingsPropertyName="sani_usermanagementConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.modules" Member="modules">
+    <Type Name="module">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="parent_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="url" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="slug" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="is_default" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="sortid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="module_roles_modules_permission" Member="roles_modules_permissions" ThisKey="id" OtherKey="module_id" Type="roles_modules_permission" />
+    </Type>
+  </Table>
+  <Table Name="dbo.users_roles" Member="users_roles">
+    <Type Name="users_role">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="role_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="role_users_role" Member="role" ThisKey="role_id" OtherKey="id" Type="role" IsForeignKey="true" />
+      <Association Name="user_users_role" Member="user" ThisKey="user_id" OtherKey="id" Type="user" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.rights" Member="rights">
+    <Type Name="right">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="right_roles_modules_permissions_right" Member="roles_modules_permissions_rights" ThisKey="id" OtherKey="rights_id" Type="roles_modules_permissions_right" />
+    </Type>
+  </Table>
+  <Table Name="dbo.roles" Member="roles">
+    <Type Name="role">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="is_default" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="role_users_role" Member="users_roles" ThisKey="id" OtherKey="role_id" Type="users_role" />
+      <Association Name="role_roles_modules_permission" Member="roles_modules_permissions" ThisKey="id" OtherKey="role_id" Type="roles_modules_permission" />
+    </Type>
+  </Table>
+  <Table Name="dbo.roles_modules_permissions" Member="roles_modules_permissions">
+    <Type Name="roles_modules_permission">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="module_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="role_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="is_default" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="roles_modules_permission_roles_modules_permissions_right" Member="roles_modules_permissions_rights" ThisKey="id" OtherKey="roles_modules_permissions_id" Type="roles_modules_permissions_right" />
+      <Association Name="module_roles_modules_permission" Member="module" ThisKey="module_id" OtherKey="id" Type="module" IsForeignKey="true" />
+      <Association Name="role_roles_modules_permission" Member="role" ThisKey="role_id" OtherKey="id" Type="role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.roles_modules_permissions_rights" Member="roles_modules_permissions_rights">
+    <Type Name="roles_modules_permissions_right">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="roles_modules_permissions_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="rights_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="is_default" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="roles_modules_permission_roles_modules_permissions_right" Member="roles_modules_permission" ThisKey="roles_modules_permissions_id" OtherKey="id" Type="roles_modules_permission" IsForeignKey="true" />
+      <Association Name="right_roles_modules_permissions_right" Member="right" ThisKey="rights_id" OtherKey="id" Type="right" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.users" Member="users">
+    <Type Name="user">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="phone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="picture" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="gender_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="education_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="interests" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="aboutme" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="is_default" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="user_users_role" Member="users_roles" ThisKey="id" OtherKey="user_id" Type="users_role" />
+    </Type>
+  </Table>
+</Database>

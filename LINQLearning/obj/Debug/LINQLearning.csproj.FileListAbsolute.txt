@@ -1,0 +1,12 @@
+c:\users\delickate\documents\visual studio 2015\Projects\LINQLearning\LINQLearning\bin\Debug\LINQLearning.exe.config
+c:\users\delickate\documents\visual studio 2015\Projects\LINQLearning\LINQLearning\bin\Debug\LINQLearning.exe
+c:\users\delickate\documents\visual studio 2015\Projects\LINQLearning\LINQLearning\bin\Debug\LINQLearning.pdb
+c:\users\delickate\documents\visual studio 2015\Projects\LINQLearning\LINQLearning\obj\Debug\LINQLearning.csprojResolveAssemblyReference.cache
+c:\users\delickate\documents\visual studio 2015\Projects\LINQLearning\LINQLearning\obj\Debug\LINQLearning.exe
+c:\users\delickate\documents\visual studio 2015\Projects\LINQLearning\LINQLearning\obj\Debug\LINQLearning.pdb
+C:\Users\delickate\Documents\Visual Studio 2015\Projects\LINQLearning\LINQLearning\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\delickate\Documents\Visual Studio 2015\Projects\LINQLearning\LINQLearning\bin\Debug\System.Security.AccessControl.dll
+C:\Users\delickate\Documents\Visual Studio 2015\Projects\LINQLearning\LINQLearning\bin\Debug\System.Security.Permissions.dll
+C:\Users\delickate\Documents\Visual Studio 2015\Projects\LINQLearning\LINQLearning\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\delickate\Documents\Visual Studio 2015\Projects\LINQLearning\LINQLearning\bin\Debug\Newtonsoft.Json.dll
+C:\Users\delickate\Documents\Visual Studio 2015\Projects\LINQLearning\LINQLearning\bin\Debug\Newtonsoft.Json.xml
